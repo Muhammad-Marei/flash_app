@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "802086513808",
+    "project_id": "flash-chat-4c869",
+    "storage_bucket": "flash-chat-4c869.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802086513808:android:848243b2ca7b1685ea3c15",
+        "android_client_info": {
+          "package_name": "marei.flash_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802086513808-gerncg2qvf58ch8uen2e5kglcnc24bjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgbWPb05prB-ALhtlzeImP-G-hfjadxuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802086513808-gerncg2qvf58ch8uen2e5kglcnc24bjs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
