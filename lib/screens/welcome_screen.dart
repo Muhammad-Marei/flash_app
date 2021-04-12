@@ -38,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.dispose();
     controller.dispose();
   }
-
+  int loading ;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: animation.value,
@@ -57,8 +57,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       children: [
                         Container(
                           child: Image.asset('images/logo.png'),
-                          height: controller.value * 100,
+                          height: (controller.value) * 100,
                         ),
+
                         Text(
                           "${(100 * controller.value).toInt()}%",
                           style: TextStyle(

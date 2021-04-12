@@ -7,8 +7,7 @@ import 'chat_screen.dart';
 
 
 class RegistrationScreen extends StatefulWidget {
-
-
+  
   static const String id = "RegistrationScreen";
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -33,11 +32,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Hero(
-              tag: "logo",
-              child: Container(
-                height: 200.0,
-                child: Image.asset('images/logo.png'),
+            Flexible(
+              child: Hero(
+                tag: "logo",
+                child: Container(
+                  height: 200.0,
+                  child: Image.asset('images/logo.png'),
+                ),
               ),
             ),
             SizedBox(
@@ -119,3 +120,4 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
+
