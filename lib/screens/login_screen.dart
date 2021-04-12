@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flash_app/constants.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'chat_screen.dart';
 class LoginScreen extends StatefulWidget {
   static const String id = "LoginScreen";
   @override
@@ -8,6 +9,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String massage = "login by your email and password" ;
+  String email ;
+  String password ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
               onChanged: (value) {
+                email=value;
                 //Do something with the user input.
               },
               decoration: ktextFieldDecoration.copyWith(hintText:"enter your Email" ) ,
@@ -43,6 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               obscureText: true,
               textAlign: TextAlign.center,
               onChanged: (value) {
+                password= value;
                 //Do something with the user input.
               },
               decoration: ktextFieldDecoration.copyWith(hintText:"enter your password" ),
@@ -57,7 +63,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    try {
+                      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: email,
+                          password: password
+                      );
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        print('No user found for that email.');
+                        massage='No user found for that email.';
+                        setState(() {
+                        });
+                      } else if (e.code == 'wrong-password') {
+                        print('Wrong password provided for that user.');
+                        massage='Wrong password provided for that user.';
+                        setState(() {
+                        });
+                      }
+                    }
                     //Implement login functionality.
                   },
                   minWidth: 200.0,
@@ -67,6 +92,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("$massage",style: TextStyle(color: massage =="login by your email and password"?Colors.blue:Colors.red ,)),
+              ],
             ),
           ],
         ),

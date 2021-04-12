@@ -1,9 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'chat_screen.dart';
-import 'chat_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 
 
 class RegistrationScreen extends StatefulWidget {
@@ -15,13 +15,18 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  UserCredential userCredential;
-  String email ="marei@gmail.com";
-  String password="123456789";
+
+  String massage = " Registration by your email and password" ;
+  UserCredential user;
+  String email ;
+  String password;
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: Colors.white,
+
+    backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -70,20 +75,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: MaterialButton(
                   onPressed: () async {
                     try {
-                      userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                          email: "barry.allen@example.com",
-                          password: "SuperSecretPassword!",
-                      );
+                      user =await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+                      if(user != null)
+                      { Navigator.pushNamed(context,ChatScreen.id);}
+
                     } on FirebaseAuthException catch (e) {
-                      if (e.code == 'weak-password') {
+                    if(user == null){
+                    massage ="please enter Email and Password";
+                    setState(() {});
+                    }else if (e.code == 'weak-password') {
                         print('The password provided is too weak.');
+                        massage ='The password provided is too weak.';
+                        setState(() {
+                        });
                       } else if (e.code == 'email-already-in-use') {
                         print('The account already exists for that email.');
+                        massage='The account already exists for that email.';
+                        setState(() {
+                        });
                       }
                     } catch (e) {
                       print(e);
                     }
-                    print (userCredential);
                   },
                   minWidth: 200.0,
                   height: 42.0,
@@ -93,6 +106,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("$massage",style: TextStyle(color: massage ==" Registration by your email and password"?Colors.blue:Colors.red ,)),
+              ],
             ),
           ],
         ),
