@@ -9,4 +9,5 @@ welcom screen
 chat screen 
 ![chat screen](https://user-images.githubusercontent.com/76013597/114352802-9005bb00-9b6c-11eb-869c-e210260ad714.png)
 
-I am going to use firebase, Fire Store to authenticate and saving chat data
+I am going to use firebase, Fire Store to authenticate and saving chat data,registration and login 
+login and regestration handeling and chat handling
