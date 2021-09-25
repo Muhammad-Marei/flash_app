@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //model
 class MessageStream extends StatelessWidget {
+
   final _fireStore = FirebaseFirestore.instance;
   User loggedInUser;
   MessageStream(this.loggedInUser);
